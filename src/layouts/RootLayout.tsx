@@ -4,12 +4,12 @@ import {
   Route,
 } from "react-router-dom";
 import { Header } from "./HeaderLayout";
-import { Test } from "../components/Test";
+import { LandingPage } from "src/components/LandingPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Header />}>
-      <Route path="test" element={<Test />} />
+      <Route index element={<LandingPage />} />
     </Route>
   )
 );

@@ -5,6 +5,7 @@ import { styled } from "@mui/material/styles";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import EmailIcon from "@mui/icons-material/Email";
 import { Outlet } from "react-router-dom";
+import { useTheme } from "@mui/material";
 
 const StyledIcon = styled("img")`
   width: 8em;
@@ -43,6 +44,7 @@ const StyledTitle = styled(Typography)`
 `;
 
 export const Header = () => {
+  const theme = useTheme();
   return (
     <Box sx={{ display: "block", flex: "wrap" }}>
       <Box>
@@ -70,7 +72,10 @@ export const Header = () => {
           >
             <StyledIcon src={logo} alt="logo" />
             <StyledTitle variant="h3">
-              Transport <span style={{ color: "yellow" }}>Concept</span>
+              Transport{" "}
+              <span style={{ color: theme.palette.secondary.main }}>
+                Concept
+              </span>
             </StyledTitle>
           </Box>
 
