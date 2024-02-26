@@ -4,6 +4,7 @@ import { styled } from "@mui/system";
 import Box from "@mui/material/Box";
 import { ConfirmationButton } from "./ConfirmationButton";
 import { useTheme } from "@mui/system";
+import { LoginFieldstType } from "src/components/types/genericTypes";
 
 const CustomTextField = styled(TextField)`
   & .MuiInputBase-root {
@@ -25,16 +26,25 @@ const CustomForm = styled("form")`
   flex-direction: column;
 `;
 
-export const AuthForm = ({ fields, action, buttonTitle }) => {
-  const onSubmit: SubmitHandler<Input> = (data) => action(data);
+interface authFormField {
+  fields: LoginFieldstType[];
+  action: (data: Record<string, string>) => void;
+  buttonTitle: string;
+}
 
+export const AuthForm = ({ fields, action, buttonTitle }: authFormField) => {
+  const defaultValues: Record<string, string> = {};
+  fields.forEach((el) => (defaultValues[el.register] = ""));
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-
+  } = useForm({
+    defaultValues,
+  });
+  const onSubmit: SubmitHandler<typeof defaultValues> = (data) => action(data);
   const theme = useTheme();
+
   return (
     <CustomBox>
       <CustomForm onSubmit={handleSubmit(onSubmit)}>
@@ -46,13 +56,10 @@ export const AuthForm = ({ fields, action, buttonTitle }) => {
               control={control}
               render={({ field }) => (
                 <CustomTextField
-                  label={componentFields.label}
-                  defaultValue={componentFields.defaultValue}
-                  placeholder={componentFields.placeholder}
+                  {...componentFields}
                   variant="filled"
                   InputProps={{
-                    startAdornment:
-                      componentFields.icon && componentFields.icon,
+                    startAdornment: componentFields?.icon || null,
                   }}
                   {...field}
                 />
@@ -66,6 +73,7 @@ export const AuthForm = ({ fields, action, buttonTitle }) => {
         <ConfirmationButton
           buttonTitle={buttonTitle}
           buttonBottomColor={theme.palette.secondary.main}
+          buttonAction={handleSubmit(onSubmit)}
         />
       </CustomForm>
     </CustomBox>

@@ -22,9 +22,10 @@ interface confirmationButtonProps {
 export const ConfirmationButton = ({
   buttonTitle,
   buttonAction,
+  buttonBottomColor,
 }: confirmationButtonProps) => {
   return (
-    <StyledButton onClick={buttonAction}>
+    <StyledButton buttonBottomColor={buttonBottomColor} onClick={buttonAction}>
       <span>{buttonTitle}</span>
     </StyledButton>
   );

@@ -27,7 +27,7 @@ export const Login = () => {
     },
   ];
 
-  const action = (values) => console.log(values);
+  const action = (values: Record<string, string>) => console.log(values);
   return (
     <Box
       sx={{

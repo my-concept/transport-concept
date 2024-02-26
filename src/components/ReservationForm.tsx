@@ -22,7 +22,6 @@ export const ReservationForm = () => {
     control,
     handleSubmit,
     formState: { errors },
-    register,
   } = useForm({
     defaultValues: {
       username: "",
