@@ -4,7 +4,7 @@ import { styled } from "@mui/system";
 import Box from "@mui/material/Box";
 import { ConfirmationButton } from "./ConfirmationButton";
 import { useTheme } from "@mui/system";
-import { LoginFieldstType } from "src/components/types/genericTypes";
+import { LoginFieldsType } from "src/components/types/genericTypes";
 
 const CustomTextField = styled(TextField)`
   & .MuiInputBase-root {
@@ -27,7 +27,7 @@ const CustomForm = styled("form")`
 `;
 
 interface authFormField {
-  fields: LoginFieldstType[];
+  fields: LoginFieldsType[];
   action: (data: Record<string, string>) => void;
   buttonTitle: string;
 }

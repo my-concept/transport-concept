@@ -1,6 +1,4 @@
-import React from "react";
 import { Typography, Box, useTheme } from "@mui/material";
-import { Login } from "./Login ";
 import { ReservationForm } from "./ReservationForm";
 
 export const LandingPage = () => {
@@ -17,8 +15,6 @@ export const LandingPage = () => {
         textAlign: "center",
       }}
     >
-      {/* <div class="main-container"> */}
-      {/* <div class="bg-transparent text-center"> */}
       <Typography
         variant="h4"
         sx={{
@@ -28,7 +24,7 @@ export const LandingPage = () => {
           fontWeight: "bold",
         }}
       >
-        La liberté de se déplacer,à portée de clic!
+        La liberté de se déplacer, à portée de clic!
       </Typography>
       <Box sx={{ width: "fit-content", margin: "auto" }}>
         <Typography
@@ -48,9 +44,6 @@ export const LandingPage = () => {
         ></Typography>
       </Box>
       <ReservationForm />
-      {/* <p class="ligne-t"></p> */}
-      {/* </div> */}
-      {/* </div> */}
     </Box>
   );
 };
