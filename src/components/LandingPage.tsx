@@ -1,5 +1,6 @@
 import { Typography, Box, useTheme } from "@mui/material";
 import { ReservationForm } from "./ReservationForm";
+import { FormattedMessage } from "react-intl";
 
 export const LandingPage = () => {
   const theme = useTheme();

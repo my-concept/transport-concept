@@ -2,18 +2,24 @@ import { RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { router } from "./router/RootLayout";
 import { theme } from "./components/themes/themes";
-import store from "./store";
 import { Provider } from "react-redux";
+import { IntlProvider } from "react-intl";
+import fr from "src/components/languages/fr.json";
+import en from "src/components/languages/en.json";
 
+import store from "./store";
+const test = false;
+
+console.log("nav", store);
 function App() {
   return (
-    <>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <IntlProvider messages={test ? fr : en} locale={navigator.language}>
         <Provider store={store}>
           <RouterProvider router={router} />
         </Provider>
-      </ThemeProvider>
-    </>
+      </IntlProvider>
+    </ThemeProvider>
   );
 }
 
