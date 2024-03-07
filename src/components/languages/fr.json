@@ -13,6 +13,10 @@
     "nbOfPassenger":"Nombre de passagers",
     "loginFormLabelUsername":"Nom d'utilisateur / Email",
     "loginFormLabelOrganisation":"Organisation",
-    "loginFormLabelPassword":"Mot de passe"
+    "loginFormLabelPassword":"Mot de passe",
+    "register":"S'enregistrer",
+    "email":"Email",
+    "phone":"Téléphone",
+    "confirmationPassword":"Confirmation du mot de passe"
 
 }
