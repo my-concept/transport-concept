@@ -1,3 +1,18 @@
 {
-    "hello":"Bonjour"
+    "landingPage.title":"La liberté de se déplacer, à portée de clic!",
+    "landingPage.subtitle":"Réservez dès maintenant",
+    "estimation":"Estimation",
+    "formError.fieldRequired":"Le champs est requis",
+    "username":"Nom d'utilisateur",
+    "organisation":"Organisation",
+    "password":"Mot de passe",
+    "login":"Connexion",
+    "departure":"Départ",
+    "destination":"Destination",
+    "dateHours":"Date / Heure",
+    "nbOfPassenger":"Nombre de passagers",
+    "loginFormLabelUsername":"Nom d'utilisateur / Email",
+    "loginFormLabelOrganisation":"Organisation",
+    "loginFormLabelPassword":"Mot de passe"
+
 }

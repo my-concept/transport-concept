@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import { ConfirmationButton } from "./ConfirmationButton";
 import { useTheme } from "@mui/system";
 import { LoginFieldsType } from "src/components/types/genericTypes";
+import { UseTranslate } from "./hooks/useTranslate";
 
 const CustomTextField = styled(TextField)`
   & .MuiInputBase-root {
@@ -32,6 +33,8 @@ interface authFormField {
   buttonTitle: string;
 }
 
+type FieldLabel = "username" | "organisation" | "password";
+
 export const AuthForm = ({ fields, action, buttonTitle }: authFormField) => {
   const defaultValues: Record<string, string> = {};
   fields.forEach((el) => (defaultValues[el.register] = ""));
@@ -51,24 +54,32 @@ export const AuthForm = ({ fields, action, buttonTitle }: authFormField) => {
         {fields?.map((componentFields) => {
           return (
             <Controller
-              key={componentFields.label}
+              key={String(componentFields.label)}
               name={componentFields.register}
+              rules={{ required: componentFields.required }}
               control={control}
               render={({ field }) => (
-                <CustomTextField
-                  {...componentFields}
-                  variant="filled"
-                  InputProps={{
-                    startAdornment: componentFields?.icon || null,
-                  }}
-                  {...field}
-                />
+                <>
+                  <CustomTextField
+                    {...componentFields}
+                    variant="filled"
+                    InputProps={{
+                      startAdornment: componentFields?.icon || null,
+                    }}
+                    {...field}
+                  />
+                  {errors[componentFields.register as FieldLabel] && (
+                    <UseTranslate id="formError.fieldRequired" />
+                  )}
+                </>
               )}
             />
           );
         })}
 
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.exampleRequired && (
+          <UseTranslate id="formError.fieldRequired" />
+        )}
 
         <ConfirmationButton
           buttonTitle={buttonTitle}

@@ -1,6 +1,6 @@
 import { Typography, Box, useTheme } from "@mui/material";
 import { ReservationForm } from "./ReservationForm";
-import { FormattedMessage } from "react-intl";
+import { UseTranslate } from "./hooks/useTranslate";
 
 export const LandingPage = () => {
   const theme = useTheme();
@@ -25,7 +25,7 @@ export const LandingPage = () => {
           fontWeight: "bold",
         }}
       >
-        La liberté de se déplacer, à portée de clic!
+        <UseTranslate id="landingPage.title" />
       </Typography>
       <Box sx={{ width: "fit-content", margin: "auto" }}>
         <Typography
@@ -35,7 +35,7 @@ export const LandingPage = () => {
             fontWeight: "bold",
           }}
         >
-          Réservez dès maintenant
+          <UseTranslate id="landingPage.subtitle" />
         </Typography>
         <Typography
           sx={{

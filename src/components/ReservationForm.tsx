@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { ConfirmationButton } from "./ConfirmationButton";
 import { styled, useTheme } from "@mui/system";
 import { SelectChangeEvent } from "@mui/material";
-
+import { UseTranslate, translate } from "./hooks/useTranslate";
 import {
   TextField,
   Box,
@@ -12,6 +12,7 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
+
 import {
   LoginFieldsType,
   ReservationFormValueType,
@@ -23,7 +24,7 @@ const CustomForm = styled(FormControl)`
   margin: 2em;
 `;
 
-type FieldLabel = "username" | "organisation" | "password" | "nbOfPassenger";
+type FieldLabel = "departure" | "destination" | "dateHours" | "nbOfPassenger";
 
 export const ReservationForm = () => {
   const {
@@ -32,9 +33,9 @@ export const ReservationForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      username: "",
-      organisation: "",
-      password: "",
+      departure: "",
+      destination: "",
+      dateHours: "",
       nbOfPassenger: 1,
     },
   });
@@ -51,43 +52,39 @@ export const ReservationForm = () => {
     console.log("uu", typeof e.target.value);
   };
 
-  const buttonTitle = "Estimation";
+  const buttonTitle = "estimation";
 
   const fields: LoginFieldsType[] = [
     {
-      label: "Depart",
-      placeholder: "Nom d'utilisateur",
+      label: translate("departure"),
       register: "departure",
       required: true,
     },
     {
-      label: "Destination",
-      placeholder: "Organisation",
-      register: "organisation",
+      label: translate("destination"),
+      register: "destination",
       required: true,
     },
     {
-      label: "Date / Heure",
-      placeholder: "xxxxxxxxxxxxxx",
-      register: "password",
+      label: translate("dateHours"),
+      register: "dateHours",
       required: true,
     },
     {
-      label: "Nombre de passagers",
+      label: translate("nbOfPassenger"),
       register: "nbOfPassenger",
       option: "select",
       required: true,
     },
   ];
 
-  console.log("k", errors);
   return (
     <div>
       <CustomForm onSubmit={handleSubmit(onSubmit)}>
         {fields?.map((componentFields) => {
           return (
             <Controller
-              key={componentFields.label}
+              key={String(componentFields.label)}
               name={componentFields.register as FieldLabel}
               control={control}
               rules={{ required: componentFields.required }}
@@ -97,7 +94,6 @@ export const ReservationForm = () => {
                     <TextField
                       {...componentFields}
                       sx={{ marginBottom: "0.5em" }}
-                      // error={true}
                       color="primary"
                       InputProps={{
                         style: { background: "transparent" },
@@ -107,7 +103,7 @@ export const ReservationForm = () => {
                       {...field}
                     />
                     {errors[componentFields.register as FieldLabel] && (
-                      <span>This field is required</span>
+                      <UseTranslate id="formError.fieldRequired" />
                     )}
                   </>
                 ) : (

@@ -8,13 +8,15 @@ import fr from "src/components/languages/fr.json";
 import en from "src/components/languages/en.json";
 
 import store from "./store";
-const test = false;
+const swichLanguage = true;
 
-console.log("nav", store);
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <IntlProvider messages={test ? fr : en} locale={navigator.language}>
+      <IntlProvider
+        messages={swichLanguage ? fr : en}
+        locale={navigator.language}
+      >
         <Provider store={store}>
           <RouterProvider router={router} />
         </Provider>

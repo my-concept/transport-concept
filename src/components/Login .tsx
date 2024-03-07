@@ -4,26 +4,31 @@ import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { UseTranslate, translate } from "./hooks/useTranslate";
+import { LoginFieldsType } from "src/components/types/genericTypes";
 
 export const Login = () => {
-  const fields = [
+  const fields: LoginFieldsType[] = [
     {
-      label: "* Nom d'utilisateur / Email",
+      label: translate("loginFormLabelUsername"),
       placeholder: "Nom d'utilisateur",
       register: "username",
       icon: <EmailIcon sx={{ height: "20px", paddingTop: "15px" }} />,
+      required: true,
     },
     {
-      label: "Organisation",
+      label: translate("loginFormLabelOrganisation"),
       placeholder: "Organisation",
       register: "organisation",
       icon: <Person2Icon sx={{ height: "20px", paddingTop: "15px" }} />,
+      required: true,
     },
     {
-      label: "* Password",
+      label: translate("loginFormLabelPassword"),
       placeholder: "xxxxxxxxxxxxxx",
       register: "password",
       icon: <LockIcon sx={{ height: "20px", paddingTop: "15px" }} />,
+      required: true,
     },
   ];
 
@@ -39,7 +44,7 @@ export const Login = () => {
         variant="h4"
         sx={{ textAlign: "center", fontWeight: "bold", marginBottom: "2em" }}
       >
-        Login
+        <UseTranslate id="login" />
       </Typography>
       <AuthForm fields={fields} action={action} buttonTitle="Login" />
     </Box>
