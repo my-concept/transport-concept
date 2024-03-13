@@ -2,12 +2,12 @@ import { Paper, Typography } from "@mui/material";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import transactions from "./FakeData/transactions/transaction";
 import RouteRoundedIcon from "@mui/icons-material/RouteRounded";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 import ListItemButton from "@mui/material/ListItemButton";
-
 import { Box } from "@mui/system";
+
+import transactions from "./FakeData/transactions/transaction";
 import { UseTranslate } from "./hooks/useTranslate";
 
 export const LastTransactionList = () => {
