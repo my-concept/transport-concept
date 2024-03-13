@@ -8,6 +8,7 @@ import { LandingPage } from "src/components/LandingPage";
 import { Login } from "src/components/Login ";
 import { AppDrawer } from "src/components/Drawer/Drawer";
 import { Register } from "src/components/Register";
+import { CarList } from "src/components/CarList";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ export const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/drawer" element={<AppDrawer />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/commandPage" element={<CarList />} />
     </Route>
   )
 );

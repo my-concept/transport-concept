@@ -7,7 +7,7 @@ import { IntlProvider } from "react-intl";
 import fr from "src/components/languages/fr.json";
 import en from "src/components/languages/en.json";
 
-import store from "./store";
+import store from "./redux/store";
 const swichLanguage = true;
 
 function App() {

@@ -23,3 +23,16 @@ export interface LoginFormValueType {
     password: string;
     nbOfPassenger: number; 
 }
+
+
+export interface DriverType {
+    name: string;
+    timeFromPoint: number;
+    stars: number;
+    price: number;
+    formula: "VIP" | "Comfort" | "Van" | "Taxi";
+    nbOfPassenger: 1|2|3|4;
+    timeEstimated: number;
+    scheduledDropOff: string;
+    carImage?:string
+  }
