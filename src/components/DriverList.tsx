@@ -18,38 +18,41 @@ const CustomListItemIcon = styled(ListItemIcon)`
 export const DriverList = (driverInfo: DriverType) => {
   return (
     <List>
-      <ListItem
-        sx={{
-          paddingTop: 0,
-          display: "flex",
-          justifyContent: "center",
-          margin: "auto",
-        }}
-      >
-        <ListItem>
-          <CustomListItemIcon>
-            <DirectionsCarIcon />
-          </CustomListItemIcon>
-          <ListItemText primary={driverInfo.name} />
-        </ListItem>
-        <ListItem>
-          <CustomListItemIcon>
-            <AccessTimeIcon />
-          </CustomListItemIcon>
-          <ListItemText primary={driverInfo.timeEstimated} />
-        </ListItem>
-        <ListItem>
-          <CustomListItemIcon>
-            <WorkIcon />
-          </CustomListItemIcon>
-          <ListItemText primary={driverInfo.nbOfPassenger} />
-        </ListItem>
-        <ListItem>
-          <CustomListItemIcon>
-            <ListItemText primary={driverInfo.stars} />
-            <StarsIcon />
-          </CustomListItemIcon>
-        </ListItem>
+      <ListItem>
+        <List
+          sx={{
+            paddingTop: 0,
+            display: "flex",
+            justifyContent: "center",
+            margin: "auto",
+            width: "100%",
+          }}
+        >
+          <ListItem>
+            <CustomListItemIcon>
+              <DirectionsCarIcon />
+            </CustomListItemIcon>
+            <ListItemText primary={driverInfo.name} />
+          </ListItem>
+          <ListItem>
+            <CustomListItemIcon>
+              <AccessTimeIcon />
+            </CustomListItemIcon>
+            <ListItemText primary={driverInfo.timeEstimated} />
+          </ListItem>
+          <ListItem>
+            <CustomListItemIcon>
+              <WorkIcon />
+            </CustomListItemIcon>
+            <ListItemText primary={driverInfo.nbOfPassenger} />
+          </ListItem>
+          <ListItem>
+            <CustomListItemIcon>
+              <ListItemText primary={driverInfo.stars} />
+              <StarsIcon />
+            </CustomListItemIcon>
+          </ListItem>
+        </List>
       </ListItem>
     </List>
   );

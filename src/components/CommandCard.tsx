@@ -33,18 +33,10 @@ export const CommandCard = ({
     setListIsActive(!listIsActive);
   };
 
-  const otherDriver = users.filter((user) => user.name !== name);
+  const otherDriver = users.filter((user: DriverType) => user.name !== name);
   const displayOtherDriver = otherDriver.map((driver: DriverType) => (
-    <DriverList
-      key={driver.name}
-      name={driver.name}
-      timeEstimated={driver.timeEstimated}
-      nbOfPassenger={driver.nbOfPassenger}
-      stars={driver.stars}
-      price={driver.stars}
-    />
+    <DriverList key={driver.name} {...driver} />
   ));
-  console.log(displayOtherDriver);
 
   return (
     <>

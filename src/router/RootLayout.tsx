@@ -9,6 +9,7 @@ import { Login } from "src/components/Login ";
 import { AppDrawer } from "src/components/Drawer/Drawer";
 import { Register } from "src/components/Register";
 import { CarList } from "src/components/CarList";
+import { CommandHistory } from "src/components/CommandHistory";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ export const router = createBrowserRouter(
       <Route path="/drawer" element={<AppDrawer />} />
       <Route path="/register" element={<Register />} />
       <Route path="/commandPage" element={<CarList />} />
+      <Route path="/commandHistory" element={<CommandHistory />} />
     </Route>
   )
 );

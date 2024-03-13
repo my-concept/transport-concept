@@ -36,3 +36,12 @@ export interface DriverType {
     scheduledDropOff: string;
     carImage?:string
   }
+
+  export interface RideType {
+    startingPoint:string,
+    pointOfArrival:string,
+    price:number,
+    driverName:string,
+    date:string,
+    status:"Done" | "Pending" | "Cancelled",
+  }

@@ -6,29 +6,8 @@ import { DriverType } from "./types/genericTypes";
 export const CarList = () => {
   const users = useSelector((state) => state.users.users);
 
-  const carLists = users.map(
-    ({
-      name,
-      timeFromPoint,
-      stars,
-      price,
-      formula,
-      nbOfPassenger,
-      timeEstimated,
-      scheduledDropOff,
-    }: DriverType) => (
-      <CommandCard
-        key={name}
-        name={name}
-        timeFromPoint={timeFromPoint}
-        stars={stars}
-        price={price}
-        formula={formula}
-        nbOfPassenger={nbOfPassenger}
-        timeEstimated={timeEstimated}
-        scheduledDropOff={scheduledDropOff}
-      />
-    )
-  );
+  const carLists = users.map((user: DriverType) => (
+    <CommandCard key={user.name} {...user} />
+  ));
   return <Box>{carLists}</Box>;
 };
