@@ -1,6 +1,6 @@
 import Button, { ButtonProps } from "@mui/material/Button";
 import { styled } from "@mui/system";
-import { UseTranslate } from "./hooks/useTranslate";
+import { Typography } from "@mui/material";
 
 interface StyledButtonProps extends ButtonProps {
   buttonBottomColor?: string;
@@ -30,7 +30,7 @@ export const ConfirmationButton = ({
 }: confirmationButtonProps) => {
   return (
     <StyledButton buttonBottomColor={buttonBottomColor} onClick={buttonAction}>
-      <UseTranslate id={buttonTitle} />
+      <Typography>{buttonTitle}</Typography>
     </StyledButton>
   );
 };

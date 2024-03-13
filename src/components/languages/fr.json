@@ -7,6 +7,7 @@
     "organisation":"Organisation",
     "password":"Mot de passe",
     "login":"Connexion",
+    "logOut":"déconnexion",
     "departure":"Départ",
     "destination":"Destination",
     "dateHours":"Date / Heure",
@@ -17,6 +18,10 @@
     "register":"S'enregistrer",
     "email":"Email",
     "phone":"Téléphone",
-    "confirmationPassword":"Confirmation du mot de passe"
+    "confirmationPassword":"Confirmation du mot de passe",
+    "reservation":"Réservation",
+    "chooseACar":"Selectionner un vehicule",
+    "payment":"Paiement",
+    "confirmation":"Confirmation"
 
 }

@@ -6,6 +6,8 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import EmailIcon from "@mui/icons-material/Email";
 import { Outlet } from "react-router-dom";
 import { useTheme } from "@mui/material";
+import { useSelector } from "react-redux";
+import { StepProgressBar } from "src/components/StepProgressBar";
 
 const StyledIcon = styled("img")`
   width: 8em;
@@ -45,12 +47,13 @@ const StyledTitle = styled(Typography)`
 
 export const Header = () => {
   const theme = useTheme();
+  const isOrdering = useSelector((state) => state.isOrdering.isOrdering);
+
   return (
     <Box sx={{ display: "block", flex: "wrap" }}>
       <Box>
         <Box
           sx={{
-            width: "100vw",
             backgroundImage: `url(${headerImage})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "100% 100%",
@@ -116,6 +119,11 @@ export const Header = () => {
           </Box>
         </Box>
       </Box>
+      {isOrdering && (
+        <Box sx={{ padding: "6em 0 " }}>
+          <StepProgressBar />
+        </Box>
+      )}
       <Outlet />
     </Box>
   );

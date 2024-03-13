@@ -52,8 +52,6 @@ export const ReservationForm = () => {
     console.log("uu", typeof e.target.value);
   };
 
-  const buttonTitle = "estimation";
-
   const fields: LoginFieldsType[] = [
     {
       label: translate("departure"),
@@ -134,7 +132,7 @@ export const ReservationForm = () => {
 
         <Box sx={{ width: "50%", marginLeft: "auto" }}>
           <ConfirmationButton
-            buttonTitle={buttonTitle}
+            buttonTitle={translate("estimation")}
             buttonBottomColor={theme.palette.secondary.main}
             buttonAction={handleSubmit(onSubmit)}
           />

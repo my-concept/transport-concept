@@ -62,7 +62,11 @@ export const Register = () => {
       >
         <UseTranslate id="register" />
       </Typography>
-      <AuthForm fields={fields} action={action} buttonTitle="Register" />
+      <AuthForm
+        fields={fields}
+        action={action}
+        buttonTitle={translate("register")}
+      />
     </Box>
   );
 };

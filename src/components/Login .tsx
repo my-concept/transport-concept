@@ -46,7 +46,11 @@ export const Login = () => {
       >
         <UseTranslate id="login" />
       </Typography>
-      <AuthForm fields={fields} action={action} buttonTitle="Login" />
+      <AuthForm
+        fields={fields}
+        action={action}
+        buttonTitle={translate("login")}
+      />
     </Box>
   );
 };
