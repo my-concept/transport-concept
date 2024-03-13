@@ -11,7 +11,6 @@ const CustomStepLabel = styled(StepLabel)`
     color: grey;
     font-size: 1em;
   }
-
   & .Mui-active {
     color: orange !important;
   }
