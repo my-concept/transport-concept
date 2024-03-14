@@ -1,4 +1,3 @@
-import { AuthForm } from "./AuthForm";
 import Person2Icon from "@mui/icons-material/Person2";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
@@ -6,20 +5,21 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { UseTranslate, translate } from "./hooks/useTranslate";
-import { LoginFieldsType } from "./types/genericTypes";
+import { FormFieldsType } from "./types/genericTypes";
+import { GenericForm } from "./GenericForm";
 
 export const Register = () => {
-  const fields: LoginFieldsType[] = [
+  const fields: FormFieldsType[] = [
     {
       label: translate("username"),
-      placeholder: "Nom d'utilisateur",
+      placeholder: translate("username"),
       register: "username",
       icon: <EmailIcon sx={{ height: "20px", paddingTop: "15px" }} />,
       required: true,
     },
     {
       label: translate("email"),
-      placeholder: "Email",
+      placeholder: translate("email"),
       register: "email",
       icon: <Person2Icon sx={{ height: "20px", paddingTop: "15px" }} />,
       required: true,
@@ -62,7 +62,8 @@ export const Register = () => {
       >
         <UseTranslate id="register" />
       </Typography>
-      <AuthForm
+      <GenericForm
+        fullWidth
         fields={fields}
         action={action}
         buttonTitle={translate("register")}

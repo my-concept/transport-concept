@@ -9,6 +9,5 @@ export const userSlice = createSlice({
   reducers: {}
 })
 
-// Action creators are generated for each case reducer function
 
 export default userSlice.reducer

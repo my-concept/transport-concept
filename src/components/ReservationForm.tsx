@@ -13,10 +13,7 @@ import {
   MenuItem,
 } from "@mui/material";
 
-import {
-  LoginFieldsType,
-  ReservationFormValueType,
-} from "./types/genericTypes";
+import { FormFieldsType, ReservationFormValueType } from "./types/genericTypes";
 
 const CustomForm = styled(FormControl)`
   display: flex;
@@ -52,7 +49,7 @@ export const ReservationForm = () => {
     console.log("uu", typeof e.target.value);
   };
 
-  const fields: LoginFieldsType[] = [
+  const fields: FormFieldsType[] = [
     {
       label: translate("departure"),
       register: "departure",

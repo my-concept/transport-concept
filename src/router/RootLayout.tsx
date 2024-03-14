@@ -11,6 +11,7 @@ import { Register } from "src/components/Register";
 import { CarList } from "src/components/CarList";
 import { CommandHistory } from "src/components/CommandHistory";
 import { LastTransactionList } from "src/components/LastTransactionList";
+import { MyProfil } from "src/components/MyProfil";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ export const router = createBrowserRouter(
       <Route path="/commandPage" element={<CarList />} />
       <Route path="/commandHistory" element={<CommandHistory />} />
       <Route path="/lastTransaction" element={<LastTransactionList />} />
+      <Route path="/myProfil" element={<MyProfil />} />
     </Route>
   )
 );

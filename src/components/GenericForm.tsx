@@ -4,38 +4,44 @@ import { styled } from "@mui/system";
 import Box from "@mui/material/Box";
 import { ConfirmationButton } from "./ConfirmationButton";
 import { useTheme } from "@mui/system";
-import { LoginFieldsType } from "src/components/types/genericTypes";
 import { UseTranslate } from "./hooks/useTranslate";
+import { Paper } from "@mui/material";
+import { FormFieldsType } from "./types/genericTypes";
 
 const CustomTextField = styled(TextField)`
   & .MuiInputBase-root {
     color: grey;
     background-color: white;
   }
-  border-bottom: 2px solid grey;
-  border-top: none;
-  border-left: 1px solid grey;
-  border-right: 1px solid grey;
-  margin-bottom: 10px;
-  border-radius: 7px;
+  width: 100%;
 `;
-
-const CustomBox = styled(Box)``;
+const CustomBox = styled(Box)`
+  width: 100%;
+`;
 
 const CustomForm = styled("form")`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+  padding: 0.5em;
 `;
 
-interface authFormField {
-  fields: LoginFieldsType[];
+interface GenericFormPropsType {
+  fields: FormFieldsType[];
   action: (data: Record<string, string>) => void;
   buttonTitle: string;
+  fullWidth?: boolean;
+  disabled?: boolean;
 }
 
-type FieldLabel = "username" | "organisation" | "password";
-
-export const AuthForm = ({ fields, action, buttonTitle }: authFormField) => {
+export const GenericForm = ({
+  fields,
+  action,
+  buttonTitle,
+  fullWidth = false,
+  disabled = false,
+}: GenericFormPropsType) => {
   const defaultValues: Record<string, string> = {};
   fields.forEach((el) => (defaultValues[el.register] = ""));
   const {
@@ -58,8 +64,11 @@ export const AuthForm = ({ fields, action, buttonTitle }: authFormField) => {
               name={componentFields.register}
               rules={{ required: componentFields.required }}
               control={control}
+              disabled={disabled}
               render={({ field }) => (
-                <>
+                <Paper
+                  sx={{ margin: "1.5em", width: fullWidth ? "100%" : null }}
+                >
                   <CustomTextField
                     {...componentFields}
                     variant="filled"
@@ -68,10 +77,10 @@ export const AuthForm = ({ fields, action, buttonTitle }: authFormField) => {
                     }}
                     {...field}
                   />
-                  {errors[componentFields.register as FieldLabel] && (
+                  {errors[componentFields.register] && (
                     <UseTranslate id="formError.fieldRequired" />
                   )}
-                </>
+                </Paper>
               )}
             />
           );
@@ -80,12 +89,13 @@ export const AuthForm = ({ fields, action, buttonTitle }: authFormField) => {
         {errors.exampleRequired && (
           <UseTranslate id="formError.fieldRequired" />
         )}
-
-        <ConfirmationButton
-          buttonTitle={buttonTitle}
-          buttonBottomColor={theme.palette.secondary.main}
-          buttonAction={handleSubmit(onSubmit)}
-        />
+        {!disabled && (
+          <ConfirmationButton
+            buttonTitle={buttonTitle}
+            buttonBottomColor={theme.palette.secondary.main}
+            buttonAction={handleSubmit(onSubmit)}
+          />
+        )}
       </CustomForm>
     </CustomBox>
   );

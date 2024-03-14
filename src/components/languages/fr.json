@@ -3,6 +3,8 @@
     "landingPage.subtitle":"Réservez dès maintenant",
     "estimation":"Estimation",
     "formError.fieldRequired":"Le champs est requis",
+    "firstName":"Prénom",
+    "lastName":"Nom",
     "username":"Nom d'utilisateur",
     "organisation":"Organisation",
     "password":"Mot de passe",
@@ -23,6 +25,7 @@
     "chooseACar":"Selectionner un vehicule",
     "payment":"Paiement",
     "confirmation":"Confirmation",
-    "lastTransactions":"Dernières transactions"
+    "lastTransactions":"Dernières transactions",
+    "modifyMyProfil":"Modifier mon profile"
 
 }

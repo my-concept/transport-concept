@@ -12,6 +12,8 @@ const StyledButton = styled(Button)<StyledButtonProps>`
   border-bottom: 5px solid ${(props) => props.buttonBottomColor || "red"};
   border-radius: 7px 7px 0px 0px;
   color: white;
+  max-width: 50%;
+  max-height: 3.2em;
 
   &:hover {
     background-color: green;

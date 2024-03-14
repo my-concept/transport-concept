@@ -1,7 +1,7 @@
 import { SvgIconComponent } from "@mui/icons-material";
 import React,{ReactElement} from "react";
 
-export interface LoginFieldsType {
+export interface FormFieldsType {
     label: string | ReactElement;
     placeholder?:string
     register:string
