@@ -46,7 +46,6 @@ export const ReservationForm = () => {
 
   const handleChange = (e: SelectChangeEvent<string>) => {
     setSelectValue(parseInt(e.target.value));
-    console.log("uu", typeof e.target.value);
   };
 
   const fields: FormFieldsType[] = [

@@ -3,23 +3,24 @@ import { Box } from "@mui/system";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import PaymentIcon from "@mui/icons-material/Payment";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { translate } from "./hooks/useTranslate";
 
 export const ProfilActionBar = () => {
   const barElements = [
     {
-      label: "Ajouter / Modifier un document ",
+      label: translate("updateADocument"),
       Icon: AddCircleIcon,
-      action: () => console.log("ji"),
+      action: () => console.log("update document"),
     },
     {
-      label: "Modifier la méthode de paiement",
+      label: translate("changePaymentMethod"),
       Icon: PaymentIcon,
-      action: () => console.log("ji"),
+      action: () => console.log("change payment method"),
     },
     {
-      label: "Supprimer mon compte",
+      label: translate("deleteAccount"),
       Icon: DeleteIcon,
-      action: () => console.log("ji"),
+      action: () => console.log("delete account"),
     },
   ];
 

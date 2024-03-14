@@ -76,10 +76,9 @@ export const MyProfil = () => {
           sx={{
             display: "flex",
             justifyContent: "center",
-            // height: "13em",
           }}
         >
-          <IconButton>
+          <IconButton onClick={() => console.log("change avatar")}>
             <img
               style={{ height: "10em", width: "10em" }}
               src="https://picsum.photos/200/300"

@@ -26,6 +26,8 @@
     "payment":"Paiement",
     "confirmation":"Confirmation",
     "lastTransactions":"Dernières transactions",
-    "modifyMyProfil":"Modifier mon profile"
-
+    "modifyMyProfil":"Modifier mon profile",
+    "updateADocument":"Ajouter / Modifier un document",
+    "changePaymentMethod":"Modifier la méthode de paiement",
+    "deleteAccount":"Supprimer mon compte"
 }
