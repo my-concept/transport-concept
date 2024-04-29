@@ -24,7 +24,6 @@ export const CommandCard = ({
   nbOfPassenger,
   price,
   timeEstimated,
-  scheduledDropOff,
 }: DriverType) => {
   const [listIsActive, setListIsActive] = useState(false);
   const users = useSelector((state) => state.users.users);
@@ -39,7 +38,7 @@ export const CommandCard = ({
   ));
 
   return (
-    <>
+    <Box>
       <StyledCard onClick={handleClick}>
         <Box
           sx={{
@@ -70,18 +69,18 @@ export const CommandCard = ({
               <PersonIcon />
               <Typography>{nbOfPassenger}</Typography>
             </Box>
-            <Typography>{price}€</Typography>
+            <Typography margin={2}>{price}€</Typography>
           </Box>
           <Box sx={{ display: "flex", flexDirection: "row" }}>
             <AccessTimeIcon />
-            <Typography sx={{ textAlign: "start" }}>
+            {/* <Typography sx={{ textAlign: "start" }}>
               {timeEstimated} min / Depose Prévu {scheduledDropOff}
-            </Typography>
+            </Typography> */}
           </Box>
         </Box>
       </StyledCard>
 
-      {listIsActive ? displayOtherDriver : null}
-    </>
+      {/* {listIsActive ? displayOtherDriver : null} */}
+    </Box>
   );
 };

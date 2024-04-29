@@ -1,21 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const activeStepLayout = createSlice({
-  name: 'step',
+  name: "step",
   initialState: {
-    isOrdering: true,
-    activeStep:0
+    isOrdering: false,
+    activeStep: 0,
   },
   reducers: {
-    toggleIsOrdering:(state) => {
-      state.isOrdering = !state.isOrdering
-    }
-  }
-})
+    toggleIsOrdering: (state) => {
+      state.isOrdering = !state.isOrdering;
+    },
+  },
+});
 
+export const { toggleIsOrdering } = activeStepLayout.actions;
 
-export const { toggleIsOrdering } = activeStepLayout.actions
-
-
-
-export default activeStepLayout.reducer
+export default activeStepLayout.reducer;

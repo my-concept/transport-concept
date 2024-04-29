@@ -51,7 +51,7 @@ export const Header = () => {
 
   return (
     <Box sx={{ display: "block", flex: "wrap" }}>
-      <Box>
+      <Box sx={{ marginBottom: "2em" }}>
         <Box
           sx={{
             backgroundImage: `url(${headerImage})`,
@@ -63,7 +63,6 @@ export const Header = () => {
             justifyContent: "space-between",
           }}
           onClick={(e) => {
-            console.log("logo");
             e.stopPropagation();
           }}
         >
@@ -98,7 +97,6 @@ export const Header = () => {
                 }}
                 component={LocalPhoneIcon}
                 onClick={(e) => {
-                  console.log("phone");
                   e.stopPropagation();
                 }}
               />
@@ -111,7 +109,6 @@ export const Header = () => {
                 }}
                 component={EmailIcon}
                 onClick={(e) => {
-                  console.log("email");
                   e.stopPropagation();
                 }}
               />

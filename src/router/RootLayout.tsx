@@ -12,18 +12,20 @@ import { CarList } from "src/components/CarList";
 import { CommandHistory } from "src/components/CommandHistory";
 import { LastTransactionList } from "src/components/LastTransactionList";
 import { MyProfil } from "src/components/MyProfil";
+import { EstimationPage } from "src/components/EstimationPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Header />}>
       <Route index element={<LandingPage />} />
-      <Route path="/login" element={<Login />} />
+      {/* <Route path="/login" element={<Login />} />
       <Route path="/drawer" element={<AppDrawer />} />
       <Route path="/register" element={<Register />} />
       <Route path="/commandPage" element={<CarList />} />
       <Route path="/commandHistory" element={<CommandHistory />} />
       <Route path="/lastTransaction" element={<LastTransactionList />} />
-      <Route path="/myProfil" element={<MyProfil />} />
+      <Route path="/myProfil" element={<MyProfil />} /> */}
+      <Route path="/estimation" element={<EstimationPage />} />
     </Route>
   )
 );

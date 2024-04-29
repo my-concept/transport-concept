@@ -12,7 +12,6 @@ export const AddElement = ({ title }: AddElementPropsType) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setImage(e.target.value);
   };
-  console.log(image);
   return (
     <Box
       sx={{

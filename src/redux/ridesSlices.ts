@@ -1,13 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit'
-import rides from 'src/components/FakeData/rides/rides'
+import { createSlice } from "@reduxjs/toolkit";
+import rides from "src/components/FakeData/rides/rides";
 
-export const userSlice = createSlice({
-  name: 'rides',
+export const rideSlice = createSlice({
+  name: "rides",
   initialState: {
-    rides: [...rides]
+    rides: [...rides],
   },
-  reducers: {}
-})
+  reducers: {
+    updateRide: (state, actions) => {
+      state.rides = actions.payload;
+    },
+  },
+});
 
+export const { updateRide } = rideSlice.actions;
 
-export default userSlice.reducer
+export default rideSlice.reducer;
