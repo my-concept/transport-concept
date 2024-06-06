@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
-import { Box } from "@mui/system";
 import { Autocomplete, TextField } from "@mui/material";
 
 import { useFetchAddresses } from "../hooks/useFetchAdress";
 import { useDispatch, useSelector } from "react-redux";
-import { useFormContext } from "react-hook-form";
 
-export const MapSelectInput = ({ setInStoreAction, title }) => {
+export const MapSelectInput = ({
+  setInStoreAction,
+  title,
+  label,
+  register,
+  setValue,
+}) => {
   const itinerary = useSelector((state) => state.estimation);
   const [choices, setChoices] = useState();
-  const [selectedAddress, setSelectedAddress] = useState();
   const [inputValue, setInputValue] = useState();
-  const [inputValue2, setInputValue2] = useState();
   const dispatch = useDispatch();
-  const { register } = useFormContext();
 
   const handleChange = async (e) => {
     setInputValue(e?.target.value);
@@ -31,28 +32,28 @@ export const MapSelectInput = ({ setInStoreAction, title }) => {
   }, [itinerary]);
 
   return (
-    <Box>
-      <Autocomplete
-        id={title}
-        autoHighlight
-        {...register(title, { required: true })}
-        value={itinerary?.departure || inputValue}
-        inputValue={
-          itinerary?.estimation?.[title][0]?.properties?.label || inputValue
-        }
-        onInputChange={handleChange}
-        onChange={async (e) => {
-          const selectedElement = choices?.filter(
-            (choice) => choice.properties.label == e.target.innerText
-          );
-          setSelectedAddress(selectedElement);
-          setInputValue2(selectedElement[0]?.properties.label);
-          dispatch(setInStoreAction(selectedElement));
-        }}
-        options={choices || []}
-        getOptionLabel={(option) => option?.properties?.label}
-        renderInput={(params) => <TextField {...params} label={title} />}
-      />
-    </Box>
+    <>
+      {register && setValue && (
+        <Autocomplete
+          id={title}
+          autoHighlight
+          {...register(title, { required: true })}
+          inputValue={
+            itinerary?.estimation?.[title][0]?.properties?.label || inputValue
+          }
+          onInputChange={handleChange}
+          onChange={async (e) => {
+            const selectedElement = choices?.filter(
+              (choice) => choice.properties.label == e.target.innerText
+            );
+            setValue(title, selectedElement[0]?.properties.label);
+            await dispatch(setInStoreAction(selectedElement));
+          }}
+          options={choices || []}
+          getOptionLabel={(option) => option?.properties?.label}
+          renderInput={(params) => <TextField {...params} label={label} />}
+        />
+      )}
+    </>
   );
 };

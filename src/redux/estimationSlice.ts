@@ -6,6 +6,8 @@ export const estimationSlice = createSlice({
     estimation: {
       departure: [],
       arrival: [],
+      date: undefined,
+      addNbOfPassenger: undefined,
     },
   },
   reducers: {
@@ -47,7 +49,7 @@ export const estimationSlice = createSlice({
         ...state,
         estimation: {
           ...state.estimation,
-          addNbOfPassenger: action.payload,
+          nbOfPassengers: action.payload,
         },
       };
     },

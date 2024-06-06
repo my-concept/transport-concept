@@ -16,7 +16,6 @@ import {
 } from "src/redux/estimationSlice";
 import { useNavigate } from "react-router-dom";
 
-import { FormFieldsType, ReservationFormValueType } from "./types/genericTypes";
 import { MapSelectInput } from "./map/MapSelectInput";
 
 const CustomForm = styled(FormControl)`
@@ -29,36 +28,36 @@ type FieldLabel = "departure" | "destination" | "dateHours" | "nbOfPassenger";
 
 export const ReservationForm = () => {
   const {
-    control,
     handleSubmit,
     formState: { errors },
     register,
-    watch,
-  } = useForm({
-    defaultValues: {
-      departure: "",
-      arrival: "",
-      dateHours: "",
-      nbOfPassenger: 1,
-    },
-  });
+    setValue,
+  } = useForm();
 
   const theme = useTheme();
   const [selectValue, setSelectValue] = useState<number>(1);
   const [selectDate, setSelectDate] = useState<string>("");
   const intl = useIntl();
   const dispatch = useDispatch();
-  const itinerary = useSelector((state) => state.estimation);
   const navigate = useNavigate();
   const methods = useForm();
-
+  const timeFromStore = useSelector(
+    (state) => state.estimation.estimation.date
+  );
+  const nbPassengersFromStore = useSelector(
+    (state) => state.estimation.estimation.nbOfPassengers
+  );
   useEffect(() => {
-    dispatch(addNbOfPassenger(selectValue));
-    selectDate && dispatch(addDate(selectDate));
-  }, [selectValue]);
+    nbPassengersFromStore && setSelectValue(3);
+    console.log("nb from store", nbPassengersFromStore);
+    console.log("selectValue", selectValue);
+    timeFromStore && setValue("dateHours", timeFromStore);
+    nbPassengersFromStore && setValue("nbOfPassengers", nbPassengersFromStore);
+  }, []);
 
-  const handleChange = (e: SelectChangeEvent<string>) => {
+  const handleChange = async (e: SelectChangeEvent<string>) => {
     setSelectValue(parseInt(e.target.value));
+    await dispatch(addNbOfPassenger(e.target.value));
   };
 
   const handleDateChange = async (e) => {
@@ -71,56 +70,45 @@ export const ReservationForm = () => {
 
     await dispatch(addDate(selectDate));
   };
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    window.location.href !== "/estimation" &&
-      itinerary.estimation.departure &&
-      navigate("/estimation");
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    await dispatch(addNbOfPassenger(data.nbOfPassengers));
+    await dispatch(addDate(data.dateHours));
+    data && navigate("/estimation");
+
+    console.log("data", data);
   };
+
   const buttonIsVisible = window.location.href.includes("estimation");
 
-  const fields: FormFieldsType[] = [
+  const selectInputField = [
     {
+      title: "departure",
       label: translate("departure"),
-      register: "departure",
-      required: true,
+      setInStore: addDeparture,
     },
-    {
-      label: translate("destination"),
-      register: "destination",
-      required: true,
-    },
-    {
-      label: translate("dateHours"),
-      register: "dateHours",
-      required: true,
-    },
-    {
-      label: translate("nbOfPassenger"),
-      register: "nbOfPassenger",
-      option: "select",
-      required: true,
-    },
+    { title: "arrival", label: translate("arrival"), setInStore: addArrival },
   ];
 
   return (
     <div>
       <FormProvider {...methods}>
         <CustomForm onSubmit={handleSubmit(onSubmit)}>
-          <Box margin={1}>
-            <MapSelectInput
-              title={"departure"}
-              setInStoreAction={addDeparture}
-            />
-            {errors.departure && <span>This field is required</span>}
-          </Box>
-          <Box margin={1}>
-            <MapSelectInput title={"arrival"} setInStoreAction={addArrival} />
-            {errors.arrival && <span>This field is required</span>}
-            <label>{itinerary?.estimation.date}</label>
-          </Box>
-          <Box margin={1}>
+          {selectInputField.map((element) => (
+            <Box sx={{ margin: "1em" }}>
+              <MapSelectInput
+                register={register}
+                label={element.label}
+                title={element.title}
+                setInStoreAction={element.setInStore}
+                setValue={setValue}
+              />
+              {errors[element.title] && <span>This field is required</span>}
+            </Box>
+          ))}
+          <Box sx={{ margin: "1em" }}>
             <Input
-              margin={1}
+              sx={{ margin: "1em" }}
               {...register("dateHours", { required: true })}
               onChange={handleDateChange}
               type="datetime-local"
@@ -137,11 +125,13 @@ export const ReservationForm = () => {
           >
             <Typography sx={{ padding: "2em" }}>Nb of passengers</Typography>
             <Select
-              margin={1}
+              sx={{ margin: "1em" }}
               {...register("nbOfPassengers", { required: true })}
               labelId="nbOfPassengers"
               id="nbOfPassengers"
-              value={selectValue.toString()}
+              value={
+                (nbPassengersFromStore && nbPassengersFromStore) || selectValue
+              }
               onChange={handleChange}
             >
               {[1, 2, 3, 4].map((option) => (

@@ -37,9 +37,13 @@ export const CommandCard = ({
     <DriverList key={driver.name} {...driver} />
   ));
 
+  const getRecap = () => <Typography>Prix</Typography>;
   return (
     <Box>
-      <StyledCard onClick={handleClick}>
+      <StyledCard
+        onClick={handleClick}
+        sx={{ backgroundColor: `${listIsActive ? "red" : "transparent"}` }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -80,7 +84,7 @@ export const CommandCard = ({
         </Box>
       </StyledCard>
 
-      {/* {listIsActive ? displayOtherDriver : null} */}
+      {/* {listIsActive ? getRecap() : null} */}
     </Box>
   );
 };
