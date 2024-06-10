@@ -3,7 +3,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { ConfirmationButton } from "./ConfirmationButton";
 import { styled, useTheme } from "@mui/system";
 import { Input, SelectChangeEvent, Typography } from "@mui/material";
-import { translate } from "./hooks/useTranslate";
+import { UseTranslate, translate } from "./hooks/useTranslate";
 
 import { useIntl } from "react-intl";
 import { Box, FormControl, Select, MenuItem } from "@mui/material";
@@ -103,7 +103,9 @@ export const ReservationForm = () => {
                 setInStoreAction={element.setInStore}
                 setValue={setValue}
               />
-              {errors[element.title] && <span>This field is required</span>}
+              {errors[element.title] && (
+                <UseTranslate id="formError.fieldRequired" />
+              )}
             </Box>
           ))}
           <Box sx={{ margin: "1em" }}>
@@ -113,7 +115,7 @@ export const ReservationForm = () => {
               onChange={handleDateChange}
               type="datetime-local"
             />
-            {errors.dateHours && <span>This field is required</span>}
+            {errors.dateHours && <UseTranslate id="formError.fieldRequired" />}
           </Box>
           <Box
             sx={{
@@ -123,7 +125,9 @@ export const ReservationForm = () => {
               alignItems: "center",
             }}
           >
-            <Typography sx={{ padding: "2em" }}>Nb of passengers</Typography>
+            <Typography sx={{ padding: "2em" }}>
+              <UseTranslate id="NbOfPassenger" />
+            </Typography>
             <Select
               sx={{ margin: "1em" }}
               {...register("nbOfPassengers", { required: true })}
@@ -140,7 +144,9 @@ export const ReservationForm = () => {
                 </MenuItem>
               ))}
             </Select>
-            {errors.nbOfPassengers && <span>This field is required</span>}
+            {errors.nbOfPassengers && (
+              <UseTranslate id="formError.fieldRequired" />
+            )}
           </Box>
           <Box
             sx={{

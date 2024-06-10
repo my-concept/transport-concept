@@ -19,30 +19,36 @@ const StyledCard = styled(Card)`
 `;
 
 export const CommandCard = ({
-  name,
   formula,
   nbOfPassenger,
   price,
   timeEstimated,
+  setActiveBoxId,
+  activeBox,
 }: DriverType) => {
   const [listIsActive, setListIsActive] = useState(false);
   const users = useSelector((state) => state.users.users);
 
-  const handleClick = () => {
-    setListIsActive(!listIsActive);
+  const handleClick = (formula) => {
+    // setListIsActive(!listIsActive);
+    setActiveBoxId({ formula, price });
   };
 
-  const otherDriver = users.filter((user: DriverType) => user.name !== name);
-  const displayOtherDriver = otherDriver.map((driver: DriverType) => (
-    <DriverList key={driver.name} {...driver} />
-  ));
+  // const otherDriver = users.filter((user: DriverType) => user.name !== name);
+  // const displayOtherDriver = otherDriver.map((driver: DriverType) => (
+  //   <DriverList key={driver.name} {...driver} />
+  // ));
 
-  const getRecap = () => <Typography>Prix</Typography>;
+  const getRecap = () => (
+    <Typography>
+      <UseTranslate id="price" />
+    </Typography>
+  );
   return (
     <Box>
       <StyledCard
-        onClick={handleClick}
-        sx={{ backgroundColor: `${listIsActive ? "red" : "transparent"}` }}
+        onClick={() => handleClick(formula)}
+        sx={{ backgroundColor: `${activeBox ? "red" : "transparent"}` }}
       >
         <Box
           sx={{
