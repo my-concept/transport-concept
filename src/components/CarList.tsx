@@ -9,7 +9,10 @@ import { UseTranslate, translate } from "./hooks/useTranslate";
 
 import { formulas } from "./utils/formulas";
 import { ConfirmationButton } from "./ConfirmationButton";
+import { GenericModal } from "./Modal";
 export const CarList = () => {
+  const [isModalDisplayed, setIsModalDisplayed] = useState(false);
+
   const users = useSelector((state) => state.users.users);
   const estimation = useSelector((state) => state.estimation.estimation);
   const distance = useSelector((state) => state.estimation.estimation.distance);
@@ -22,7 +25,14 @@ export const CarList = () => {
 
   const handleSubmit = () => {
     console.log("le prix calculé");
+    setIsModalDisplayed(!isModalDisplayed);
+    console.log(isModalDisplayed);
   };
+
+  const finalPrice = priceCalculation(
+    distance?.totalDistance,
+    activeBoxId?.formula
+  );
   const carLists = formulas.map((formula) => {
     const price = priceCalculation(distance?.totalDistance, formula);
     return (
@@ -47,6 +57,13 @@ export const CarList = () => {
           onClick={handleSubmit}
         />
       </Box>
+      <GenericModal
+        open={isModalDisplayed}
+        setIsOpen={setIsModalDisplayed}
+        estimation={estimation}
+        price={finalPrice}
+        timeEstimated={timeEstimated}
+      />
     </Box>
   );
 };
