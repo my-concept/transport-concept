@@ -22,6 +22,11 @@ export const MapSelectInput = ({
       const data = await useFetchAddresses(e.target.value);
       setChoices(data?.data.features);
     }
+    const selectedElement = choices?.filter(
+      (choice) => choice.properties.label == e.target.innerText
+    );
+    setValue(title, selectedElement[0]?.properties.label);
+    await dispatch(setInStoreAction(selectedElement));
   };
   useEffect(() => {
     title === "departure"
@@ -41,16 +46,17 @@ export const MapSelectInput = ({
           inputValue={
             itinerary?.estimation?.[title][0]?.properties?.label || inputValue
           }
+          value={inputValue}
           onInputChange={handleChange}
           onChange={async (e) => {
             const selectedElement = choices?.filter(
               (choice) => choice.properties.label == e.target.innerText
             );
-            setValue(title, selectedElement[0]?.properties.label);
+            // setValue(title, selectedElement[0]?.properties.label);
             await dispatch(setInStoreAction(selectedElement));
           }}
           options={choices || []}
-          getOptionLabel={(option) => option?.properties?.label}
+          getOptionLabel={(option) => String(option?.properties?.label)}
           renderInput={(params) => <TextField {...params} label={label} />}
         />
       )}

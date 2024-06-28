@@ -15,12 +15,13 @@ export const EstimationPage = () => {
   const arrival = useSelector((state) => state.estimation.estimation.arrival);
   const [distance, setDistance] = useState(null);
 
-  const temps = useSelector((state) => state.estimation.estimation.date);
+  // const temps = useSelector((state) => state.estimation.estimation.date);
   const tempss = useSelector(
     (state) => state.estimation.estimation.nbOfPassengers
   );
 
   useEffect(() => {
+    console.log("departure", departure);
     dispatch(addDistance(distance));
   }, [departure, arrival, distance]);
 
