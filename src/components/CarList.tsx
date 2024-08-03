@@ -22,6 +22,7 @@ export const CarList = () => {
   const distance = useSelector((state) => state.estimation.estimation.distance);
   const timeEstimated = timeCalculation(distance?.totalTime || 1);
   const [activeBoxId, setActiveBoxId] = useState(null);
+  const [prii, setprii] = useState(null);
   const [isAir, setIsAir] = useState(false);
 
   useEffect(() => {
@@ -34,7 +35,6 @@ export const CarList = () => {
     estimation?.arrival[0]?.properties?.label.toLowerCase().includes("aeroport")
       ? setIsAir(true)
       : setIsAir(false);
-    console.log("is Air", isAir);
   });
 
   const handleSubmit = () => {
@@ -61,7 +61,7 @@ export const CarList = () => {
       return price;
     } catch (error) {
       console.error("Error calculating final price:", error);
-      return 0; // Return 0 as the default value in case of error
+      return 0;
     }
   };
 

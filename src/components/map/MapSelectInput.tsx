@@ -18,14 +18,14 @@ export const MapSelectInput = ({
 
   const handleChange = async (e) => {
     setInputValue(e?.target.value);
-    if (Array.from(e?.target.value).length >= 4) {
-      const data = await useFetchAddresses(e.target.value);
-      setChoices(data?.data.features);
+    if (Array.from(e?.target?.value).length >= 4) {
+      const data = await useFetchAddresses(e?.target?.value);
+      setChoices(data?.data?.features);
     }
     const selectedElement = choices?.filter(
-      (choice) => choice.properties.label == e.target.innerText
+      (choice) => choice?.properties?.label == e?.target?.innerText
     );
-    setValue(title, selectedElement[0]?.properties.label);
+    setValue(title, selectedElement[0]?.properties?.label);
     await dispatch(setInStoreAction(selectedElement));
   };
   useEffect(() => {
@@ -34,7 +34,7 @@ export const MapSelectInput = ({
       : title === "arrival"
       ? setInputValue(itinerary.estimation?.arrival[0]?.properties?.label)
       : null;
-  }, [itinerary]);
+  }, []);
 
   return (
     <>
@@ -44,19 +44,19 @@ export const MapSelectInput = ({
           autoHighlight
           {...register(title, { required: true })}
           inputValue={
-            itinerary?.estimation?.[title][0]?.properties?.label || inputValue
+            inputValue || itinerary?.estimation?.[title][0]?.properties?.label
           }
           value={inputValue}
           onInputChange={handleChange}
           onChange={async (e) => {
             const selectedElement = choices?.filter(
-              (choice) => choice.properties.label == e.target.innerText
+              (choice) => choice?.properties?.label == e?.target?.innerText
             );
             // setValue(title, selectedElement[0]?.properties.label);
             await dispatch(setInStoreAction(selectedElement));
           }}
           options={choices || []}
-          getOptionLabel={(option) => String(option?.properties?.label)}
+          getOptionLabel={(option) => option?.properties?.label}
           renderInput={(params) => <TextField {...params} label={label} />}
         />
       )}
