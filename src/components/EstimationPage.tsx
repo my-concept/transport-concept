@@ -15,17 +15,10 @@ export const EstimationPage = () => {
   const arrival = useSelector((state) => state.estimation.estimation.arrival);
   const [distance, setDistance] = useState(null);
 
-  // const temps = useSelector((state) => state.estimation.estimation.date);
-  const tempss = useSelector(
-    (state) => state.estimation.estimation.nbOfPassengers
-  );
-
   useEffect(() => {
-    console.log("departure", departure);
     dispatch(addDistance(distance));
   }, [departure, arrival, distance]);
 
-  console.log("nb from store estimation pagge", tempss);
   return (
     <Container
       sx={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}
@@ -45,8 +38,8 @@ export const EstimationPage = () => {
         <CarList />
         <Box sx={{ width: "100%" }}>
           <Map
-            departureCoordinates={departure[0]?.geometry.coordinates}
-            arrivalCoordinates={arrival[0]?.geometry.coordinates}
+            departureCoordinates={departure[0]?.geometry?.coordinates}
+            arrivalCoordinates={arrival[0]?.geometry?.coordinates}
             setDistance={setDistance}
           />
         </Box>

@@ -3,7 +3,6 @@ export const priceCalculation = (
   formule: string,
   isFromAirport = false
 ) => {
-  console.log("price normal");
   let price;
   let distanceInKm = distance / 1000;
   let pricePerKm;
@@ -32,7 +31,6 @@ export const priceCalculationFromAirport = (
   distance: number,
   formule: string
 ) => {
-  console.log("price airport");
   let price;
   let distanceInKm = distance / 1000;
   let pricePerKm;

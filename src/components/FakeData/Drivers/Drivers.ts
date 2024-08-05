@@ -1,13 +1,17 @@
+import vanCarImage from "src/assets/vanCar.png";
+import taxiCarImage from "src/assets/taxiCar.png";
+import vipCarImage from "src/assets/vipCar.png";
+
 export default [
   {
     name: "patrick",
     timeFromPoint: 4,
     stars: 5,
-    formula: "Comfort",
+    formula: "Van",
     nbOfPassenger: 3,
     timeEstimated: 5,
     scheduledDropOff: "14h53",
-    carImage: "https://picsum.photos/200/300",
+    carImage: vanCarImage,
   },
   {
     name: "Vincent",
@@ -17,7 +21,7 @@ export default [
     nbOfPassenger: 2,
     timeEstimated: 5,
     scheduledDropOff: "12h13",
-    carImage: "https://picsum.photos/200/300",
+    carImage: vipCarImage,
   },
   {
     name: "Anna",
@@ -27,6 +31,6 @@ export default [
     nbOfPassenger: 4,
     timeEstimated: 9,
     scheduledDropOff: "17h01",
-    carImage: "https://picsum.photos/200/300",
+    carImage: taxiCarImage,
   },
 ];

@@ -11,9 +11,11 @@ const StyledCard = styled(Card)`
   padding: 2px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   img {
-    width: 8em;
-    height: 8em;
+    width: 10em;
+    height: 6em;
     border-radius: 5%;
   }
 `;
@@ -25,6 +27,7 @@ export const CommandCard = ({
   timeEstimated,
   setActiveBoxId,
   activeBox,
+  carImage,
 }: DriverType) => {
   const [listIsActive, setListIsActive] = useState(false);
   const users = useSelector((state) => state.users.users);
@@ -56,7 +59,7 @@ export const CommandCard = ({
             justifyContent: "flex-start",
           }}
         >
-          <img src="https://picsum.photos/200/300" alt="car image" />
+          <img src={carImage} alt="car image" />
         </Box>
         <Box
           sx={{

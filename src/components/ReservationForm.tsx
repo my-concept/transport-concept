@@ -29,6 +29,7 @@ type FieldLabel = "departure" | "destination" | "dateHours" | "nbOfPassenger";
 export const ReservationForm = () => {
   const {
     handleSubmit,
+    control,
     formState: { errors },
     register,
     setValue,
@@ -49,8 +50,6 @@ export const ReservationForm = () => {
   );
   useEffect(() => {
     nbPassengersFromStore && setSelectValue(3);
-    console.log("nb from store", nbPassengersFromStore);
-    console.log("selectValue", selectValue);
     timeFromStore && setValue("dateHours", timeFromStore);
     nbPassengersFromStore && setValue("nbOfPassengers", nbPassengersFromStore);
   }, []);
@@ -75,8 +74,6 @@ export const ReservationForm = () => {
     await dispatch(addNbOfPassenger(data.nbOfPassengers));
     await dispatch(addDate(data.dateHours));
     data && navigate("/estimation");
-
-    console.log("data", data);
   };
 
   const buttonIsVisible = window.location.href.includes("estimation");
@@ -97,6 +94,7 @@ export const ReservationForm = () => {
           {selectInputField.map((element) => (
             <Box sx={{ margin: "1em" }}>
               <MapSelectInput
+                control={control}
                 register={register}
                 label={element.label}
                 title={element.title}

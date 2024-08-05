@@ -26,9 +26,6 @@ export const CarList = () => {
   const [isAir, setIsAir] = useState(false);
 
   useEffect(() => {
-    console.log(activeBoxId);
-    console.log(isAir);
-    console.log("goo mec", estimation?.departure[0]?.properties?.label);
     estimation?.departure[0]?.properties?.label
       .toLowerCase()
       .includes("aeroport") ||
@@ -38,12 +35,9 @@ export const CarList = () => {
   });
 
   const handleSubmit = () => {
-    console.log("le prix calculé");
     setIsModalDisplayed(!isModalDisplayed);
-    console.log(isModalDisplayed);
   };
 
-  console.log("airport", estimation?.departure[0]?.properties?.label);
   const finalPrice = () => {
     try {
       const distance = distance?.totalDistance;
@@ -57,7 +51,6 @@ export const CarList = () => {
         isAir === true
           ? priceCalculationFromAirport(distance, formula)
           : priceCalculationFromAirport(distance, formula);
-      console.log("jjj", price);
       return price;
     } catch (error) {
       console.error("Error calculating final price:", error);
@@ -65,24 +58,20 @@ export const CarList = () => {
     }
   };
 
-  // const finalPrice = priceCalculation(
-  //   distance?.totalDistance,
-  //   activeBoxId?.formula
-  // );
   const carLists = formulas.map((formula) => {
-    // const price = priceCalculation(distance?.totalDistance, formula);
     const price = isAir
       ? priceCalculationFromAirport(distance?.totalDistance, formula)
       : priceCalculation(distance?.totalDistance, formula);
     return (
       <CommandCard
         activeBox={activeBoxId?.formula === formula ? true : false}
-        key={formula}
-        formula={formula}
+        key={formula.name}
+        formula={formula.name}
         price={price}
         timeEstimated={timeEstimated}
         nbOfPassenger={estimation.addNbOfPassenger}
         setActiveBoxId={setActiveBoxId}
+        carImage={formula.image}
       />
     );
   });
